@@ -6,10 +6,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl apps list 2>/dev/null | grep -q contract-scanner || flyctl apps create contract-scanner --org personal
       - run: flyctl deploy --remote-only
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      - run: flyctl secrets set DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }} --app contract-scanner
