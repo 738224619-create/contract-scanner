@@ -14,7 +14,7 @@ try:
 except:
     CN_FONT = 'Helvetica'
 
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "exports")
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "data", "exports")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 LEVEL_LABELS = {"high": "高风险", "medium": "中风险", "low": "低风险"}

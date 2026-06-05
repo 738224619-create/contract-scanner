@@ -14,7 +14,7 @@ from export_pdf import generate as generate_pdf, generate_optimized
 app = FastAPI(title="AI 合同风险扫描")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
-UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "uploads")
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "data", "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 llm = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL)
 
